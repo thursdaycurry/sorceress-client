@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function CountryTable() {
+function Countries() {
   const [countries, setCountries] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +28,8 @@ function CountryTable() {
 
     fetchData();
   }, []);
+
+  console.log('test');
 
   return (
     <div>
@@ -58,4 +60,4 @@ function CountryTable() {
   );
 }
 
-export default CountryTable;
+export default Countries;

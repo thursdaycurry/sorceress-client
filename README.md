@@ -1,3 +1,7 @@
+# Tasks
+
+- [] 환경 변수 설정 및 실행 환경 분리
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

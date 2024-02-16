@@ -1,20 +1,22 @@
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import Countries from './components/Countries';
+import CountryAnalysis from './components/CountryAnalysis';
 import Home from './components/Home';
 
 function App() {
-  // <CountryTable />;
   return (
     <Router>
-      <div className='navbar'>
+      <div className='flex justify-around py-2'>
         <Link to='/'>Home</Link>
-        <Link to='/countries'>Countries</Link>
+        <Link to='/country/list'>Country/list</Link>
+        <Link to='/country/analysis'>Country/analysis</Link>
       </div>
       <hr />
       <Routes>
         <Route index element={<Home />} />
-        <Route path='/countries' element={<Countries />} />
+        <Route path='/country/list' element={<Countries />} />
+        <Route path='/country/analysis' element={<CountryAnalysis />} />
       </Routes>
     </Router>
   );

@@ -8,8 +8,6 @@ const CountrySelector = ({ onCountriesSelect }) => {
     const fetchCountries = async () => {
       try {
         const url = `${process.env.REACT_APP_API_URL}/country`;
-
-        console.log(`url ${url}`);
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -24,41 +22,37 @@ const CountrySelector = ({ onCountriesSelect }) => {
     fetchCountries();
   }, []);
 
-  const handleChange = (event) => {
-    const value = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedCountries(value);
-    // Uncomment the next line to use the callback when countries are selected
-    // onCountriesSelect(value);
+  const toggleCountrySelection = (code) => {
+    const index = selectedCountries.indexOf(code);
+    const newSelectedCountries = [...selectedCountries];
+    if (index === -1) {
+      newSelectedCountries.push(code);
+    } else {
+      newSelectedCountries.splice(index, 1);
+    }
+    setSelectedCountries(newSelectedCountries);
+    onCountriesSelect(newSelectedCountries);
   };
 
   return (
-    <div className='mb-4'>
-      <h2>
-        <label
-          htmlFor='country-selector'
-          className='block text-sm font-medium text-gray-700'
-        >
-          국가 선택
-        </label>
-      </h2>
-
-      <select
-        id='country-selector'
-        multiple={true}
-        value={selectedCountries}
-        onChange={handleChange}
-        className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-        style={{ height: '200px' }}
-      >
+    <div>
+      <h2>국가 선택</h2>
+      <ul className='flex flex-wrap justify-start items-center'>
         {countries.map((country) => (
-          <option key={country.code} value={country.code}>
+          <li
+            key={country.code}
+            onClick={() => toggleCountrySelection(country.code)}
+            className={`cursor-pointer rounded-full border px-2 py-1 m-1 text-sm transition-colors duration-300 text-xs ${
+              selectedCountries.includes(country.code)
+                ? 'bg-blue-500 text-white border-blue-700'
+                : 'bg-sky-50 border-sky-100 text-sky-700 hover:bg-sky-200'
+            }`}
+            title={country.name}
+          >
             {country.name}
-          </option>
+          </li>
         ))}
-      </select>
+      </ul>
     </div>
   );
 };

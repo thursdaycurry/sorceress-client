@@ -3,6 +3,8 @@
 
 # Env
 .env
+.env.development
+.env.production
 
 ### react ###
 .DS_*

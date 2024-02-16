@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import EnergySourcePieChart from './CountryAnalysisEnergyPie';
 import CountryAnalysisEnergyTable from './CountryAnalysisEnergyTable';
 
 const CountryAnalysisEnergy = ({ selectedCountries }) => {
@@ -47,7 +48,10 @@ const CountryAnalysisEnergy = ({ selectedCountries }) => {
       {response && (
         <div className='mt-3 text-sm text-gray-600'>
           {response.length ? (
-            <CountryAnalysisEnergyTable data={response} />
+            <div>
+              <CountryAnalysisEnergyTable data={response} />
+              <EnergySourcePieChart data={response} />
+            </div>
           ) : (
             <p>no data available</p>
           )}

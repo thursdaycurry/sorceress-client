@@ -6,7 +6,7 @@ const CountrySelector = ({ onCountriesSelect }) => {
 
   useEffect(() => {
     // 국가 코드를 불러오는 GET 요청
-    fetch('http://localhost:3000/country')
+    fetch(`${process.env.REACT_APP_HOST}/country`)
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);

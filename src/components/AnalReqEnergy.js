@@ -6,7 +6,7 @@ const AnalReqEnergy = ({ selectedCountries }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch(
-      'http://localhost:3000/energy/elecGenSource?countryCode=JP,kr,us,gb',
+      `${process.env.REACT_APP_HOST}/energy/elecGenSource?countryCode=JP,kr,us,gb`,
       {
         method: 'GET',
         headers: {

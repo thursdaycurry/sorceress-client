@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 
 function Countries() {
   const [countries, setCountries] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      try {
-        const response = await fetch(`http://localhost:3000/country`);
 
+      try {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/country`);
+        console.log(`${process.env.REACT_APP_HOST}/country`);
         console.log(response);
         if (!response.ok) {
           throw new Error(`fail to fetch`);
@@ -28,8 +27,6 @@ function Countries() {
 
     fetchData();
   }, []);
-
-  console.log('test');
 
   return (
     <div>

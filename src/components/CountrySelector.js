@@ -5,13 +5,21 @@ const CountrySelector = ({ onCountriesSelect }) => {
   const [selectedCountries, setSelectedCountries] = useState([]);
 
   useEffect(() => {
-    // 국가 코드를 불러오는 GET 요청
-    fetch(`${process.env.REACT_APP_HOST}/country`)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchCountries = async () => {
+      try {
+        const url = `${process.env.REACT_APP_HOST}/country`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
         setCountries(data);
-      })
-      .catch((error) => console.error('Error:', error));
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchCountries();
   }, []);
 
   const handleChange = (event) => {
@@ -20,8 +28,8 @@ const CountrySelector = ({ onCountriesSelect }) => {
       (option) => option.value
     );
     setSelectedCountries(value);
+    // Uncomment the next line to use the callback when countries are selected
     // onCountriesSelect(value);
-    console.log(value);
   };
 
   return (
@@ -52,4 +60,5 @@ const CountrySelector = ({ onCountriesSelect }) => {
     </div>
   );
 };
+
 export default CountrySelector;

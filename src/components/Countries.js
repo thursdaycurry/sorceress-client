@@ -10,8 +10,10 @@ function Countries() {
       setIsLoading(true);
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_HOST}/country`);
-        console.log(`${process.env.REACT_APP_HOST}/country`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/country`
+        );
+        console.log(`${process.env.REACT_APP_API_URL}/country`);
         console.log(response);
         if (!response.ok) {
           throw new Error(`fail to fetch`);

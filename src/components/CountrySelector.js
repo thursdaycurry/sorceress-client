@@ -7,7 +7,9 @@ const CountrySelector = ({ onCountriesSelect }) => {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const url = `${process.env.REACT_APP_HOST}/country`;
+        const url = `${process.env.REACT_APP_API_URL}/country`;
+
+        console.log(`url ${url}`);
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Network response was not ok');

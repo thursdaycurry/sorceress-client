@@ -36,7 +36,6 @@ const CountrySelector = ({ onCountriesSelect }) => {
 
   return (
     <div>
-      <h2>국가 선택</h2>
       <ul className='flex flex-wrap justify-start items-center'>
         {countries.map((country) => (
           <li

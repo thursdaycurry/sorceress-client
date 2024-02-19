@@ -10,13 +10,13 @@ function App() {
       <div className='flex justify-around py-2'>
         <Link to='/'>Home</Link>
         <Link to='/country/list'>Country/list</Link>
-        <Link to='/country/analysis'>Country/analysis</Link>
+        <Link to='/country/energy'>Country/energy</Link>
       </div>
       <hr />
       <Routes>
         <Route index element={<Home />} />
         <Route path='/country/list' element={<Countries />} />
-        <Route path='/country/analysis' element={<CountryAnalysis />} />
+        <Route path='/country/energy' element={<CountryAnalysis />} />
       </Routes>
     </Router>
   );

@@ -10,7 +10,7 @@ const CountryAnalysis = () => {
   };
 
   return (
-    <div className='mx-10'>
+    <div className='mx-10 my-10'>
       <h1 className='text-xl font-medium mt-7'>
         Electricity Generation Sources Analysis
       </h1>

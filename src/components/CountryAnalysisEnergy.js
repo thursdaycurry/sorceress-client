@@ -1,23 +1,24 @@
 import { useState } from 'react';
+import CountryAnalysisCSV from './CountryAnalysisCSV';
 import EnergySourcePieChart from './CountryAnalysisEnergyPie';
 import CountryAnalysisEnergyTable from './CountryAnalysisEnergyTable';
 
 const CountryAnalysisEnergy = ({ selectedCountries }) => {
   const [response, setResponse] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevents the default form submission behavior
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     // Ensure there's a check for selectedCountries to not be empty
     if (!selectedCountries) {
       console.log('No countries selected');
       setResponse('Please select at least one country.');
-      return; // Early return if no countries are selected
+      return alert('Please select countries');
     }
 
     const url = `${process.env.REACT_APP_API_URL}/energy/elecGenSource?countryCode=${selectedCountries}`;
 
-    fetch(url, {
+    await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -51,6 +52,7 @@ const CountryAnalysisEnergy = ({ selectedCountries }) => {
             <div>
               <CountryAnalysisEnergyTable data={response} />
               <EnergySourcePieChart data={response} />
+              <CountryAnalysisCSV selectedCountries={selectedCountries} />
             </div>
           ) : (
             <p>no data available</p>
